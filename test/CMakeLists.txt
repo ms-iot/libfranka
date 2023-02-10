@@ -8,10 +8,11 @@ set(GTEST_ARCHIVE_HASH 58a6f4277ca2bc8565222b3bbd58a177609e9c488e8a72649359ba514
 set(GTEST_LIBRARIES gtest gmock gmock_main)
 
 include(SetupGoogleTest)
-
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 foreach(lib ${GTEST_LIBRARIES})
   target_compile_options(${lib} PUBLIC -Wno-deprecated-copy)
 endforeach()
+endif()
 
 set(TEST_OUTPUT_DIR ${PROJECT_BINARY_DIR}/test_results)
 set(TEST_DEPENDENCIES
